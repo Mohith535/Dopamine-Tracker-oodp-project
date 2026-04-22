@@ -1,0 +1,11 @@
+# Compiled executables
+*.exe
+*.obj
+*.o
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Mermaid files (can be kept if you want the source, but we have the pngs)
+*.mmd

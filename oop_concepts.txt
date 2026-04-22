@@ -1,0 +1,68 @@
+DOPAMINE TRACKER SYSTEM - OOP CONCEPTS EXPLANATION
+=======================================================
+
+This system uses four core Object-Oriented Programming (OOP) concepts 
+to manage human behavior tracking efficiently.
+
+1. ABSTRACTION
+--------------
+Concept: Hiding complex implementation details and showing only the 
+necessary features.
+
+In the Code:
+- The class 'Habit' (Line 21) is an Abstract Base Class.
+- It uses "Pure Virtual Functions": 
+    virtual int getScore() const = 0;
+    virtual string getType() const = 0;
+- Logic: You cannot create a generic "Habit" object because a habit 
+  must have a specific type (Good or Bad) to have a score. The 'Habit' 
+  class acts as a blueprint or template for all future habits.
+
+2. ENCAPSULATION
+----------------
+Concept: Bundling data (attributes) and methods (functions) into a 
+single unit and restricting direct access to some components (Data Hiding).
+
+In the Code:
+- In class 'Habit', the attribute 'string name' is 'private' (Line 23).
+- In class 'Tracker', the 'vector<Habit*> habits' and 'map dailyRecords' 
+  are 'private' (Lines 66-73).
+- Logic: External functions cannot accidentally modify the habit list 
+  or the name of a habit. They must use public methods like 
+  'getName()' or 'addHabit()' to interact with the data safely.
+
+3. INHERITANCE
+--------------
+Concept: A mechanism where a new class (derived class) acquires 
+properties and behaviors of an existing class (base class).
+
+In the Code:
+- 'class GoodHabit : public Habit' (Line 42)
+- 'class BadHabit : public Habit' (Line 53)
+- Logic: Both GoodHabit and BadHabit "inherit" the 'name' attribute 
+  and the 'getName()' method from the 'Habit' class. This avoids 
+  repeating code (DRY - Don't Repeat Yourself).
+
+4. POLYMORPHISM
+---------------
+Concept: "Many forms." It allows a single interface (base class pointer) 
+to represent different underlying forms (derived classes).
+
+In the Code:
+- In the 'Tracker' class, we store all habits in a single list: 
+  'vector<Habit*> habits'.
+- When calculating the score (Line 137):
+    score += habits[i]->getScore();
+- Logic: Even though 'habits[i]' is a pointer to the base class 'Habit', 
+  C++ automatically knows at runtime whether to call the +10 score 
+  from 'GoodHabit' or the -8 score from 'BadHabit'. This is called 
+  "Runtime Polymorphism" or "Late Binding."
+
+SUMMARY FOR VIVA:
+-----------------
+- Class Structure: Habit (Abstract Base) -> GoodHabit/BadHabit (Derived).
+- Management: Tracker class encapsulates all data and provides a 
+  unified interface to the main program.
+- Scalability: Because of Polymorphism, we can add 100 new types of 
+  habits (e.g., NeutralHabit, ExtremeHabit) without changing the 
+  logic inside the Tracker's score calculation.

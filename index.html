@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Digital Habit & Dopamine Tracker — Calendar-based behavioral tracking system with consistency analytics and dopamine scoring.">
+    <title>Dopamine Tracker — Control Your Habits</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- ── Header ── -->
+    <header id="app-header">
+        <div class="header-glow"></div>
+        <h1>Dopamine Tracker</h1>
+        <p class="subtitle">Control your habits. Control your life.</p>
+    </header>
+
+    <main id="app-main">
+
+        <!-- ══ ROW 1: Score + Add Habit ══ -->
+        <div class="grid-row-top">
+
+            <!-- Score Card -->
+            <section id="score-card" class="card">
+                <div class="card-label">Today's Score</div>
+                <div id="score-value" class="score-number">0</div>
+                <div id="score-status" class="status-badge status-neutral">No data</div>
+                <div class="score-meta">
+                    <div class="meta-item">
+                        <span class="meta-val" id="streak-count">0</span>
+                        <span class="meta-label">Day Streak</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-val" id="best-score">0</span>
+                        <span class="meta-label">Best Score</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-val" id="total-days">0</span>
+                        <span class="meta-label">Days Tracked</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Habit Card -->
+            <section id="add-habit-card" class="card">
+                <h2>Add Habit</h2>
+                <div class="input-group">
+                    <input type="text" id="habit-input" placeholder="e.g. Morning workout, Study 2hrs..." autocomplete="off">
+                    <button id="btn-add" class="btn btn-good" onclick="addHabit()">
+                        <span class="btn-icon">+</span> Add Habit
+                    </button>
+                </div>
+                <div id="habit-chips" class="habit-chips"></div>
+            </section>
+        </div>
+
+        <!-- ══ ROW 2: Calendar + Day Panel ══ -->
+        <div class="grid-row-calendar">
+
+            <!-- Calendar -->
+            <section id="calendar-card" class="card">
+                <div class="calendar-header">
+                    <button class="cal-nav" id="btn-prev" onclick="changeMonth(-1)">‹</button>
+                    <h2 id="cal-month-label">April 2026</h2>
+                    <button class="cal-nav" id="btn-next" onclick="changeMonth(1)">›</button>
+                </div>
+                <div class="cal-weekdays">
+                    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div id="cal-grid" class="cal-grid"></div>
+            </section>
+
+            <!-- Day Detail Panel -->
+            <section id="day-panel" class="card day-panel">
+                <div id="day-panel-empty" class="day-panel-empty">
+                    <div class="empty-icon">📅</div>
+                    <p>Select a date from the calendar to mark your habits</p>
+                </div>
+                <div id="day-panel-content" class="day-panel-content" style="display:none;">
+                    <div class="day-panel-header">
+                        <h2 id="day-panel-date">April 21, 2026</h2>
+                        <div id="day-panel-score" class="day-score">0 pts</div>
+                    </div>
+                    <ul id="day-habit-list" class="day-habit-list"></ul>
+                    <button id="btn-save-day" class="btn btn-primary" onclick="saveDay()">Save Day</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- ══ ROW 3: Monthly Graph ══ -->
+        <section id="graph-card" class="card card-wide">
+            <div class="graph-header">
+                <h2>Monthly Progress</h2>
+                <div id="graph-summary" class="graph-summary"></div>
+            </div>
+            <div class="canvas-wrapper">
+                <canvas id="score-chart"></canvas>
+            </div>
+        </section>
+
+        <!-- ══ ROW 4: Habit Consistency ══ -->
+        <section id="consistency-card" class="card card-wide">
+            <h2>Habit Consistency</h2>
+            <div id="consistency-grid" class="consistency-grid">
+                <p class="text-muted">Add habits and track days to see consistency.</p>
+            </div>
+        </section>
+
+        <!-- ══ Feedback ══ -->
+        <section id="feedback-card" class="card card-wide">
+            <div id="feedback-icon" class="feedback-icon">🧠</div>
+            <div id="feedback-text" class="feedback-text">Add your daily habits, then click dates on the calendar to start tracking.</div>
+        </section>
+    </main>
+
+    <footer id="app-footer">
+        <p>Digital Habit & Dopamine Tracker &middot; Calendar-Based Behavioral System &middot; OOP Project</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
