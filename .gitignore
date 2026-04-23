@@ -8,4 +8,6 @@
 Thumbs.db
 
 # Mermaid files (can be kept if you want the source, but we have the pngs)
-*.mmd
+activity_diagram.mmd
+sequence_diagram.mmd
+
